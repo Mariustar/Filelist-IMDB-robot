@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 6.0.2 (Python 3.11.3 on win32)" generated="20230425 09:03:57.363" rpa="false" schemaversion="3">
+<suite id="s1" name="Filelist-IMDB" source="C:\Users\Marius\Documents\Web-Dev-Programming-UI-UX\Filelist-IMDB">
+<suite id="s1-s1" name="Tests" source="C:\Users\Marius\Documents\Web-Dev-Programming-UI-UX\Filelist-IMDB\Tests">
+<suite id="s1-s1-s1" name="Robot" source="C:\Users\Marius\Documents\Web-Dev-Programming-UI-UX\Filelist-IMDB\Tests\robot.robot">
+<test id="s1-s1-s1-t1" name="Imdb movie search" line="15">
+<kw name="Start Test" library="base" type="SETUP">
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>about:blank</arg>
+<arg>${browser}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20230425 09:03:57.908" level="INFO">Opening browser 'chrome' to base url 'about:blank'.</msg>
+<msg timestamp="20230425 09:03:57.925" level="INFO">Executing: C:\Users\Marius\AppData\Local\Programs\Python\Python311\Lib\site-packages\selenium\webdriver\common\windows\selenium-manager.exe --browser chrome --output json</msg>
+<status status="PASS" starttime="20230425 09:03:57.907" endtime="20230425 09:03:59.572"/>
+</kw>
+<kw name="Maximize Browser Window" library="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" starttime="20230425 09:03:59.573" endtime="20230425 09:03:59.703"/>
+</kw>
+<status status="PASS" starttime="20230425 09:03:57.906" endtime="20230425 09:03:59.703"/>
+</kw>
+<kw name="Search Movie on IMDB" library="HeaderPage">
+<doc>Basic movie search functionality</doc>
+<kw name="Go To" library="SeleniumLibrary">
+<arg>${imdb_url}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<msg timestamp="20230425 09:03:59.705" level="INFO">Opening url 'https://imdb.com'</msg>
+<status status="PASS" starttime="20230425 09:03:59.704" endtime="20230425 09:04:03.435"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${imdb_search}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20230425 09:04:03.437" level="INFO">Clicking element 'css:#suggestion-search'.</msg>
+<status status="PASS" starttime="20230425 09:04:03.436" endtime="20230425 09:04:03.557"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${imdb_search}</arg>
+<arg>${imdb_search_term}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20230425 09:04:03.558" level="INFO">Typing text 'Avengers' into text field 'css:#suggestion-search'.</msg>
+<status status="PASS" starttime="20230425 09:04:03.557" endtime="20230425 09:04:03.744"/>
+</kw>
+<kw name="Press Keys" library="SeleniumLibrary">
+<arg>${imdb_search}</arg>
+<arg>RETURN</arg>
+<doc>Simulates the user pressing key(s) to an element or on the active browser.</doc>
+<msg timestamp="20230425 09:04:03.745" level="INFO">Sending key(s) ('RETURN',) to css:#suggestion-search element.</msg>
+<msg timestamp="20230425 09:04:04.027" level="INFO">Pressing special key RETURN to element.</msg>
+<msg timestamp="20230425 09:04:04.028" level="INFO">Releasing special key RETURN.</msg>
+<status status="PASS" starttime="20230425 09:04:03.744" endtime="20230425 09:04:05.757"/>
+</kw>
+<status status="PASS" starttime="20230425 09:03:59.704" endtime="20230425 09:04:05.757"/>
+</kw>
+<kw name="Click on movies button" library="SearchPage">
+<doc>Clicking on movies button to only search for movies</doc>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${movie_button}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20230425 09:04:05.759" level="INFO">Clicking element '//section[@data-testid='more-results-section']//a[1]'.</msg>
+<status status="PASS" starttime="20230425 09:04:05.758" endtime="20230425 09:04:06.870"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20230425 09:04:07.872" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20230425 09:04:06.871" endtime="20230425 09:04:07.872"/>
+</kw>
+<status status="PASS" starttime="20230425 09:04:05.757" endtime="20230425 09:04:07.872"/>
+</kw>
+<kw name="Verify results" library="SearchPage">
+<doc>Verifies the serch results, if there are no movies with the search terms you provided, test will fail</doc>
+<kw name="Page Should Not Contain" library="SeleniumLibrary">
+<arg>No results found for ${imdb_search_term}</arg>
+<doc>Verifies the current page does not contain ``text``.</doc>
+<msg timestamp="20230425 09:04:07.943" level="INFO">Current page does not contain text 'No results found for Avengers'.</msg>
+<status status="PASS" starttime="20230425 09:04:07.874" endtime="20230425 09:04:07.943"/>
+</kw>
+<status status="PASS" starttime="20230425 09:04:07.873" endtime="20230425 09:04:07.943"/>
+</kw>
+<kw name="Click on first movie" library="SearchPage">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${first_movie}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20230425 09:04:07.947" level="INFO">Clicking element '//body/div[@id='__next']/main[@role='main']/div[@role='presentation']/div[@role='presentation']/section/div/div/section[@data-testid='find-results-section-title']/div/ul[@role='presentation']/li[1]'.</msg>
+<status status="PASS" starttime="20230425 09:04:07.946" endtime="20230425 09:04:11.076"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20230425 09:04:13.076" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20230425 09:04:11.076" endtime="20230425 09:04:13.076"/>
+</kw>
+<status status="PASS" starttime="20230425 09:04:07.945" endtime="20230425 09:04:13.077"/>
+</kw>
+<kw name="Get url part for filelist" library="ImdbPage">
+<doc>Gets the url part of the url that will be used to search on filelist</doc>
+<kw name="Get Location" library="SeleniumLibrary">
+<var>${movie_url}</var>
+<doc>Returns the current browser window URL.</doc>
+<msg timestamp="20230425 09:04:13.086" level="INFO">${movie_url} = https://www.imdb.com/title/tt4154796/?ref_=fn_tt_tt_1</msg>
+<status status="PASS" starttime="20230425 09:04:13.078" endtime="20230425 09:04:13.086"/>
+</kw>
+<kw name="Split String" library="String">
+<var>${movie_url_parts}</var>
+<arg>${movie_url}</arg>
+<arg>/</arg>
+<doc>Splits the ``string`` using ``separator`` as a delimiter string.</doc>
+<msg timestamp="20230425 09:04:13.087" level="INFO">${movie_url_parts} = ['https:', '', 'www.imdb.com', 'title', 'tt4154796', '?ref_=fn_tt_tt_1']</msg>
+<status status="PASS" starttime="20230425 09:04:13.086" endtime="20230425 09:04:13.087"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${movie_term}</var>
+<arg>${movie_url_parts}[4]</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20230425 09:04:13.088" level="INFO">${movie_term} = tt4154796</msg>
+<status status="PASS" starttime="20230425 09:04:13.087" endtime="20230425 09:04:13.088"/>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<arg>${movie_term}</arg>
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<msg timestamp="20230425 09:04:13.090" level="INFO">${movie_term} = tt4154796</msg>
+<status status="PASS" starttime="20230425 09:04:13.088" endtime="20230425 09:04:13.090"/>
+</kw>
+<kw name="Close Browser" library="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="PASS" starttime="20230425 09:04:13.090" endtime="20230425 09:04:15.276"/>
+</kw>
+<status status="PASS" starttime="20230425 09:04:13.077" endtime="20230425 09:04:15.276"/>
+</kw>
+<kw name="End Test" library="base" type="TEARDOWN">
+<kw name="Close Browser" library="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="PASS" starttime="20230425 09:04:15.276" endtime="20230425 09:04:15.277"/>
+</kw>
+<status status="PASS" starttime="20230425 09:04:15.276" endtime="20230425 09:04:15.277"/>
+</kw>
+<status status="PASS" starttime="20230425 09:03:57.903" endtime="20230425 09:04:15.277"/>
+</test>
+<test id="s1-s1-s1-t2" name="Filelist Login and go to browse page" line="22">
+<kw name="Start Test" library="base" type="SETUP">
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>about:blank</arg>
+<arg>${browser}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20230425 09:04:15.282" level="INFO">Opening browser 'chrome' to base url 'about:blank'.</msg>
+<msg timestamp="20230425 09:04:15.293" level="INFO">Executing: C:\Users\Marius\AppData\Local\Programs\Python\Python311\Lib\site-packages\selenium\webdriver\common\windows\selenium-manager.exe --browser chrome --output json</msg>
+<status status="PASS" starttime="20230425 09:04:15.281" endtime="20230425 09:04:16.659"/>
+</kw>
+<kw name="Maximize Browser Window" library="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" starttime="20230425 09:04:16.659" endtime="20230425 09:04:16.772"/>
+</kw>
+<status status="PASS" starttime="20230425 09:04:15.280" endtime="20230425 09:04:16.772"/>
+</kw>
+<kw name="Filelist Login" library="Login">
+<kw name="Go To" library="SeleniumLibrary">
+<arg>${filelist_url}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<msg timestamp="20230425 09:04:16.774" level="INFO">Opening url 'https://filelist.io'</msg>
+<status status="PASS" starttime="20230425 09:04:16.773" endtime="20230425 09:04:17.110"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${filelist_username_input}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20230425 09:04:17.111" level="INFO">Clicking element 'css:#username'.</msg>
+<status status="PASS" starttime="20230425 09:04:17.110" endtime="20230425 09:04:17.168"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${filelist_username_input}</arg>
+<arg>${filelist_username}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20230425 09:04:17.169" level="INFO">Typing text 'nurofen100' into text field 'css:#username'.</msg>
+<status status="PASS" starttime="20230425 09:04:17.168" endtime="20230425 09:04:17.239"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${filelist_password_input}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20230425 09:04:17.241" level="INFO">Clicking element 'css:#password'.</msg>
+<status status="PASS" starttime="20230425 09:04:17.240" endtime="20230425 09:04:17.285"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${filelist_password_input}</arg>
+<arg>${filelist_password}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20230425 09:04:17.286" level="INFO">Typing text '252658' into text field 'css:#password'.</msg>
+<status status="PASS" starttime="20230425 09:04:17.285" endtime="20230425 09:04:17.335"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${filelist_login_on_any_ip}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20230425 09:04:17.336" level="INFO">Clicking element '//input[@name='unlock']'.</msg>
+<status status="PASS" starttime="20230425 09:04:17.335" endtime="20230425 09:04:17.374"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${filelist_login_button}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20230425 09:04:17.375" level="INFO">Clicking element '//input[@value='Login']'.</msg>
+<status status="PASS" starttime="20230425 09:04:17.374" endtime="20230425 09:04:19.059"/>
+</kw>
+<status status="PASS" starttime="20230425 09:04:16.773" endtime="20230425 09:04:19.059"/>
+</kw>
+<kw name="Filelist Browse page search" library="BrowsePage">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${filelist_browse_element}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20230425 09:04:19.061" level="INFO">Clicking element '//div[@id='nav']//a[normalize-space()='Browse']'.</msg>
+<status status="PASS" starttime="20230425 09:04:19.060" endtime="20230425 09:04:19.394"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${filelist_search_input}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20230425 09:04:19.394" level="INFO">Clicking element 'name:search'.</msg>
+<status status="PASS" starttime="20230425 09:04:19.394" endtime="20230425 09:04:19.442"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${filelist_search_input}</arg>
+<arg>${movie_term}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20230425 09:04:19.443" level="INFO">Typing text 'tt4154796' into text field 'name:search'.</msg>
+<status status="PASS" starttime="20230425 09:04:19.443" endtime="20230425 09:04:19.498"/>
+</kw>
+<kw name="Select From List By Index" library="SeleniumLibrary">
+<arg>${filelist_search_by}</arg>
+<arg>3</arg>
+<doc>Selects options from selection list ``locator`` by ``indexes``.</doc>
+<msg timestamp="20230425 09:04:19.499" level="INFO">Selecting options from selection list 'name:searchin' by index 3.</msg>
+<status status="PASS" starttime="20230425 09:04:19.498" endtime="20230425 09:04:19.606"/>
+</kw>
+<kw name="Press Keys" library="SeleniumLibrary">
+<arg>${filelist_search_input}</arg>
+<arg>RETURN</arg>
+<doc>Simulates the user pressing key(s) to an element or on the active browser.</doc>
+<msg timestamp="20230425 09:04:19.607" level="INFO">Sending key(s) ('RETURN',) to name:search element.</msg>
+<msg timestamp="20230425 09:04:19.893" level="INFO">Pressing special key RETURN to element.</msg>
+<msg timestamp="20230425 09:04:19.894" level="INFO">Releasing special key RETURN.</msg>
+<status status="PASS" starttime="20230425 09:04:19.606" endtime="20230425 09:04:20.107"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${filelist_sortby_seeds}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20230425 09:04:20.108" level="INFO">Clicking element '//img[@title='Seeders']'.</msg>
+<status status="PASS" starttime="20230425 09:04:20.107" endtime="20230425 09:04:20.326"/>
+</kw>
+<status status="PASS" starttime="20230425 09:04:19.060" endtime="20230425 09:04:20.326"/>
+</kw>
+<kw name="Get the first 1080p movie" library="BrowsePage">
+<kw name="Get WebElements" library="SeleniumLibrary">
+<var>${elements}</var>
+<arg>xpath://*[contains(text(), '1080p')]</arg>
+<doc>Returns a list of WebElement objects matching the ``locator``.</doc>
+<msg timestamp="20230425 09:04:20.345" level="INFO">${elements} = [&lt;selenium.webdriver.remote.webelement.WebElement (session="2d37c19b54581a8f0f3ee69a9c2924ff", element="56070580-c9b4-4e3d-bc4a-3205bb2c2595")&gt;, &lt;selenium.webdriver.remote.webelement.WebElement (sessi...</msg>
+<status status="PASS" starttime="20230425 09:04:20.329" endtime="20230425 09:04:20.345"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${first_1080_movie}</var>
+<arg>${elements}[0]</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20230425 09:04:20.346" level="INFO">${first_1080_movie} = &lt;selenium.webdriver.remote.webelement.WebElement (session="2d37c19b54581a8f0f3ee69a9c2924ff", element="56070580-c9b4-4e3d-bc4a-3205bb2c2595")&gt;</msg>
+<status status="PASS" starttime="20230425 09:04:20.345" endtime="20230425 09:04:20.346"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${first_1080_movie}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20230425 09:04:20.349" level="INFO">Clicking element '&lt;selenium.webdriver.remote.webelement.WebElement (session="2d37c19b54581a8f0f3ee69a9c2924ff", element="56070580-c9b4-4e3d-bc4a-3205bb2c2595")&gt;'.</msg>
+<status status="PASS" starttime="20230425 09:04:20.346" endtime="20230425 09:04:21.826"/>
+</kw>
+<status status="PASS" starttime="20230425 09:04:20.329" endtime="20230425 09:04:21.826"/>
+</kw>
+<kw name="Download the selected movie" library="MoviePage">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${download_link}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20230425 09:04:21.828" level="INFO">Clicking element '//*[@id="maincolumn"]/div[1]/div[5]/div/span[1]/a'.</msg>
+<status status="PASS" starttime="20230425 09:04:21.827" endtime="20230425 09:04:21.962"/>
+</kw>
+<kw name="Get WebElement" library="SeleniumLibrary">
+<var>${download_link}</var>
+<arg>xpath://*[contains(text(), '.torrent')]</arg>
+<doc>Returns the first WebElement matching the given ``locator``.</doc>
+<msg timestamp="20230425 09:04:21.979" level="INFO">${download_link} = &lt;selenium.webdriver.remote.webelement.WebElement (session="2d37c19b54581a8f0f3ee69a9c2924ff", element="3f03a487-5aed-40b8-aa83-2d312e57c299")&gt;</msg>
+<status status="PASS" starttime="20230425 09:04:21.963" endtime="20230425 09:04:21.979"/>
+</kw>
+<kw name="Get Text" library="SeleniumLibrary">
+<var>${torrent_name}</var>
+<arg>${download_link}</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<msg timestamp="20230425 09:04:22.002" level="INFO">${torrent_name} = Avengers.Endgame.2019.Hybrid.1080p.BluRay.DD+7.1.x264-playHD.torrent</msg>
+<status status="PASS" starttime="20230425 09:04:21.979" endtime="20230425 09:04:22.003"/>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<arg>${torrent_name}</arg>
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<msg timestamp="20230425 09:04:22.004" level="INFO">${torrent_name} = Avengers.Endgame.2019.Hybrid.1080p.BluRay.DD+7.1.x264-playHD.torrent</msg>
+<status status="PASS" starttime="20230425 09:04:22.003" endtime="20230425 09:04:22.004"/>
+</kw>
+<kw name="Wait Until Keyword Succeeds" library="BuiltIn">
+<arg>5s</arg>
+<arg>1s</arg>
+<arg>File Should Exist</arg>
+<arg>${download_directory}/${torrent_name}</arg>
+<doc>Runs the specified keyword and retries if it fails.</doc>
+<kw name="File Should Exist" library="OperatingSystem">
+<arg>${download_directory}/${torrent_name}</arg>
+<doc>Fails unless the given ``path`` points to an existing file.</doc>
+<msg timestamp="20230425 09:04:22.006" level="INFO" html="true">File '&lt;a href="file://C:\Users\Marius\Downloads\Avengers.Endgame.2019.Hybrid.1080p.BluRay.DD+7.1.x264-playHD.torrent"&gt;C:\Users\Marius\Downloads\Avengers.Endgame.2019.Hybrid.1080p.BluRay.DD+7.1.x264-playHD.torrent&lt;/a&gt;' exists.</msg>
+<status status="PASS" starttime="20230425 09:04:22.005" endtime="20230425 09:04:22.006"/>
+</kw>
+<status status="PASS" starttime="20230425 09:04:22.005" endtime="20230425 09:04:22.006"/>
+</kw>
+<status status="PASS" starttime="20230425 09:04:21.827" endtime="20230425 09:04:22.007"/>
+</kw>
+<kw name="End Test" library="base" type="TEARDOWN">
+<kw name="Close Browser" library="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="PASS" starttime="20230425 09:04:22.008" endtime="20230425 09:04:24.122"/>
+</kw>
+<status status="PASS" starttime="20230425 09:04:22.007" endtime="20230425 09:04:24.122"/>
+</kw>
+<status status="PASS" starttime="20230425 09:04:15.279" endtime="20230425 09:04:24.123"/>
+</test>
+<status status="PASS" starttime="20230425 09:03:57.412" endtime="20230425 09:04:24.125"/>
+</suite>
+<status status="PASS" starttime="20230425 09:03:57.408" endtime="20230425 09:04:24.127"/>
+</suite>
+<status status="PASS" starttime="20230425 09:03:57.372" endtime="20230425 09:04:24.129"/>
+</suite>
+<statistics>
+<total>
+<stat pass="2" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="2" fail="0" skip="0" id="s1" name="Filelist-IMDB">Filelist-IMDB</stat>
+<stat pass="2" fail="0" skip="0" id="s1-s1" name="Tests">Filelist-IMDB.Tests</stat>
+<stat pass="2" fail="0" skip="0" id="s1-s1-s1" name="Robot">Filelist-IMDB.Tests.Robot</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
